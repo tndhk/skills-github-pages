@@ -1,0 +1,12 @@
+{
+  "name": "skills-github-pages",
+  "version": "1.0.0",
+  "description": "Modern responsive travel blog with Tailwind CSS",
+  "scripts": {
+    "build:css": "tailwindcss -i ./assets/css/input.css -o ./assets/css/main.css",
+    "watch:css": "tailwindcss -i ./assets/css/input.css -o ./assets/css/main.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.3.0"
+  }
+}
