@@ -1,1 +1,41 @@
-theme: minima
+# Theme
+# theme: minima  # Custom layouts are used instead
+
+# Site metadata
+title: 旅行メモ
+description: 家族との旅の思い出と旅行計画のコツをシェア
+author: 旅行メモ
+
+# Build settings
+markdown: kramdown
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Collections
+collections:
+  posts:
+    output: true
+    permalink: /:categories/:year/:month/:day/:slug/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+  - scope:
+      path: "index.md"
+    values:
+      layout: "home"
+
+# Exclude from processing
+exclude:
+  - .gitignore
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - package.json
+  - tailwind.config.js
+  - .prettierrc

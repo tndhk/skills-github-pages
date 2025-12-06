@@ -1,0 +1,92 @@
+---
+layout: default
+---
+
+<section class="bg-gradient-to-br from-primary-50 to-blue-50 py-16 md:py-24">
+  <div class="container text-center animate-fade-in">
+    <div class="mb-6 text-5xl md:text-6xl">✈️</div>
+    <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+      旅行メモ
+    </h1>
+    <p class="text-lg md:text-xl text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
+      家族との思い出の旅を記録。おすすめの旅行先、ガイド、計画のコツをシェアしています。
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="#posts" class="btn btn-primary">ブログを読む</a>
+      <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">GitHub で見る</a>
+    </div>
+  </div>
+</section>
+
+<section id="posts" class="container py-16">
+  <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">最新のブログ</h2>
+
+  {% assign sorted_posts = site.posts | sort: 'date' | reverse %}
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    {% for post in sorted_posts limit: 6 %}
+      <article class="card group cursor-pointer transition-all duration-300 hover:scale-105 animate-slide-up">
+        <div class="flex flex-col h-full">
+          <div class="mb-4">
+            <span class="inline-block bg-primary-100 text-primary-700 px-3 py-1 rounded-full text-sm font-semibold">
+              {{ post.date | date: "%Y年%m月%d日" }}
+            </span>
+          </div>
+
+          <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-3 group-hover:text-primary-600 transition-colors">
+            <a href="{{ post.url | relative_url }}">
+              {{ post.title }}
+            </a>
+          </h3>
+
+          <p class="text-gray-600 mb-4 flex-grow line-clamp-3">
+            {{ post.excerpt | strip_html | truncatewords: 30 }}
+          </p>
+
+          <a href="{{ post.url | relative_url }}" class="inline-flex items-center text-primary-600 font-semibold hover:text-primary-700 transition-colors group-hover:gap-2 gap-1">
+            もっと読む
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+
+  {% if sorted_posts.size == 0 %}
+    <div class="text-center py-12">
+      <p class="text-gray-500 text-lg">まだブログ記事がありません。準備中です！</p>
+    </div>
+  {% endif %}
+</section>
+
+<section class="bg-gray-100 py-16 md:py-24">
+  <div class="container text-center">
+    <h2 class="text-3xl md:text-4xl font-bold mb-8">このサイトについて</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="card bg-white">
+        <div class="text-4xl mb-4">🌍</div>
+        <h3 class="text-xl font-bold mb-2">世界を旅する</h3>
+        <p class="text-gray-600">様々な目的地への旅の経験と知識をシェア</p>
+      </div>
+      <div class="card bg-white">
+        <div class="text-4xl mb-4">👨‍👩‍👧‍👦</div>
+        <h3 class="text-xl font-bold mb-2">家族で楽しむ</h3>
+        <p class="text-gray-600">子どもたちとの旅行計画のコツと実体験</p>
+      </div>
+      <div class="card bg-white">
+        <div class="text-4xl mb-4">📝</div>
+        <h3 class="text-xl font-bold mb-2">詳細ガイド</h3>
+        <p class="text-gray-600">実用的な旅行ガイドと攻略情報を提供</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>
