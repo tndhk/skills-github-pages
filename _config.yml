@@ -5,9 +5,11 @@
 title: 旅行メモ
 description: 家族との旅の思い出と旅行計画のコツをシェア
 author: 旅行メモ
+baseurl: /skills-github-pages
 
 # Build settings
 markdown: kramdown
+future: true
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
