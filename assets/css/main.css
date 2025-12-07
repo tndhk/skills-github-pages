@@ -19,8 +19,8 @@ html {
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  background-color: #f9fafb;
-  color: #111827;
+  background-color: #f8fafc;
+  color: #1e293b;
   line-height: 1.6;
 }
 
@@ -29,7 +29,7 @@ h1 {
   font-size: 2.25rem;
   line-height: 2.5rem;
   font-weight: 700;
-  color: #111827;
+  color: #0f172a;
   margin-bottom: 1rem;
 }
 
@@ -37,7 +37,7 @@ h2 {
   font-size: 1.875rem;
   line-height: 2.25rem;
   font-weight: 700;
-  color: #111827;
+  color: #1e293b;
   margin-bottom: 0.75rem;
 }
 
@@ -45,7 +45,7 @@ h3 {
   font-size: 1.5rem;
   line-height: 2rem;
   font-weight: 700;
-  color: #1f2937;
+  color: #334155;
   margin-bottom: 0.5rem;
 }
 
@@ -53,18 +53,18 @@ h4 {
   font-size: 1.25rem;
   line-height: 1.75rem;
   font-weight: 700;
-  color: #1f2937;
+  color: #475569;
 }
 
 /* Links */
 a {
-  color: #0284c7;
+  color: #1e40af;
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
 a:hover {
-  color: #0369a1;
+  color: #1e3a8a;
 }
 
 /* Paragraphs */
@@ -113,10 +113,10 @@ pre code {
 
 /* Blockquote */
 blockquote {
-  border-left: 4px solid #0ea5e9;
+  border-left: 4px solid #3b82f6;
   padding-left: 1rem;
   font-style: italic;
-  color: #4b5563;
+  color: #475569;
   margin: 1rem 0;
 }
 
@@ -129,14 +129,15 @@ table {
 }
 
 th, td {
-  border: 1px solid #e5e7eb;
+  border: 1px solid #cbd5e1;
   padding: 0.75rem 1rem;
   text-align: left;
 }
 
 th {
-  background-color: #f3f4f6;
+  background-color: #e0e7ff;
   font-weight: 600;
+  color: #1e293b;
 }
 
 /* Images */
@@ -162,13 +163,13 @@ img {
 }
 
 .btn-primary {
-  background-color: #0284c7;
+  background-color: #1e40af;
   color: #ffffff;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
 .btn-primary:hover {
-  background-color: #0369a1;
+  background-color: #1e3a8a;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 
@@ -302,14 +303,14 @@ img {
 
 /* Background Colors */
 .bg-white { background-color: #ffffff; }
-.bg-gray-50 { background-color: #f9fafb; }
-.bg-gray-100 { background-color: #f3f4f6; }
-.bg-gray-200 { background-color: #e5e7eb; }
-.bg-gray-800 { background-color: #1f2937; }
-.bg-gray-900 { background-color: #111827; }
-.bg-primary-50 { background-color: #f0f9ff; }
-.bg-primary-100 { background-color: #e0f2fe; }
-.bg-primary-600 { background-color: #0284c7; }
+.bg-gray-50 { background-color: #f8fafc; }
+.bg-gray-100 { background-color: #f1f5f9; }
+.bg-gray-200 { background-color: #e2e8f0; }
+.bg-gray-800 { background-color: #1e293b; }
+.bg-gray-900 { background-color: #0f172a; }
+.bg-primary-50 { background-color: #eff6ff; }
+.bg-primary-100 { background-color: #dbeafe; }
+.bg-primary-600 { background-color: #1e40af; }
 
 .to-blue-50 { --tw-gradient-to: #eff6ff; }
 .from-primary-50 {
@@ -319,14 +320,14 @@ img {
 }
 
 /* Text Colors */
-.text-gray-100 { color: #f3f4f6; }
-.text-gray-400 { color: #9ca3af; }
-.text-gray-500 { color: #6b7280; }
-.text-gray-600 { color: #4b5563; }
-.text-gray-800 { color: #1f2937; }
-.text-gray-900 { color: #111827; }
-.text-primary-600 { color: #0284c7; }
-.text-primary-700 { color: #0369a1; }
+.text-gray-100 { color: #f1f5f9; }
+.text-gray-400 { color: #94a3b8; }
+.text-gray-500 { color: #64748b; }
+.text-gray-600 { color: #475569; }
+.text-gray-800 { color: #1e293b; }
+.text-gray-900 { color: #0f172a; }
+.text-primary-600 { color: #1e40af; }
+.text-primary-700 { color: #1e3a8a; }
 .text-white { color: #ffffff; }
 
 /* Display */
@@ -379,8 +380,8 @@ img {
 
 /* Border */
 .border-l-4 { border-left-width: 4px; }
-.border-gray-700 { border-color: #374151; }
-.border-primary-500 { border-color: #0ea5e9; }
+.border-gray-700 { border-color: #334155; }
+.border-primary-500 { border-color: #3b82f6; }
 .rounded { border-radius: 0.25rem; }
 .rounded-lg { border-radius: 0.5rem; }
 .rounded-xl { border-radius: 0.75rem; }
@@ -415,11 +416,11 @@ img {
 }
 
 .hover\:text-primary-600:hover {
-  color: #0284c7;
+  color: #1e40af;
 }
 
 .hover\:text-primary-700:hover {
-  color: #0369a1;
+  color: #1e3a8a;
 }
 
 .hover\:text-white:hover {
