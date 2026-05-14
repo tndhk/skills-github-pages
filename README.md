@@ -1,78 +1,51 @@
-# 旅行メモ
+# HTML Library / GitHub Pages
 
-家族との旅の思い出と旅行計画のコツをシェアするブログです。
+このリポジトリは、HTMLスライドや静的ページを増やしていくための GitHub Pages 置き場です。
 
-## このサイトについて
+## 目的
 
-このサイトはJekyll + GitHub Pagesで構築された旅行ブログです。家族旅行の記録や旅行計画のヒントなどを投稿しています。
+- 1つのHTMLを差し替えるのではなく、HTMLをどんどん追加する
+- iPhoneでもそのまま開ける共有URLを持つ
+- テーマごとに過去版を残しつつ蓄積する
 
-## 技術スタック
+## 公開ページ
 
-- **Jekyll**: 静的サイトジェネレーター
-- **GitHub Pages**: ホスティング
-- **Tailwind CSS**: スタイリング
-- **カスタムレイアウト**: モダンなブログデザイン
+- ホーム: `/skills-github-pages/`
+- 一覧ページ: `/skills-github-pages/html/`
+- Teslaスライド: `/skills-github-pages/html/tesla-model3-analysis/`
 
-## ローカル開発
+## 追加ルール
 
-### 前提条件
+新しいHTMLは、基本的にこの形で追加します。
 
-- Ruby（2.7以降）
-- Bundler
-- Node.js（Tailwind CSSのビルド用）
-
-### セットアップ
-
-1. リポジトリをクローン
-
-```bash
-git clone <repository-url>
-cd skills-github-pages
+```text
+html/<category>/<slug>/index.html
 ```
 
-2. 依存関係をインストール
+例:
 
-```bash
-bundle install
-npm install
+```text
+html/tesla/model3-analysis/index.html
+html/finance/monthly-review/index.html
+html/books/summary-2026-05/index.html
 ```
 
-3. ローカルサーバーを起動
+## ふるまい
 
-```bash
-bundle exec jekyll serve
-```
+- `index.html` は各ページのトップに置く
+- 一覧ページから各HTMLにリンクする
+- 古い版は消さずに残す
+- 1つのテーマに複数ページを持たせてもよい
 
-サイトは `http://localhost:4000` で確認できます。
+## 更新方法
 
-### Tailwind CSSのビルド
+1. HTMLファイルを追加する
+2. 一覧ページにリンクを足す
+3. `main` に push する
+4. GitHub Pages が自動反映する
 
-開発中にスタイルを変更する場合：
+## 補足
 
-```bash
-npm run build:css
-```
-
-## ブログ記事の追加
-
-新しい記事は `_posts` ディレクトリに追加します。ファイル名は `YYYY-MM-DD-title.md` の形式にしてください。
-
-例：
-```markdown
----
-layout: post
-title: "記事のタイトル"
-date: 2025-05-07
-categories: [旅行]
----
-
-記事の内容をここに書きます。
-```
-
-## デプロイ
-
-このサイトはGitHub Pagesで自動的にデプロイされます。`main`ブランチにプッシュすると自動的にビルド・公開されます。
-
-## ライセンス
-
-[MIT License](LICENSE)
+- 既存の Jekyll 設定はそのまま使っています
+- 静的 HTML は front matter なしでもそのまま配信されます
+- テンプレートは `html/template.html` を参照してください

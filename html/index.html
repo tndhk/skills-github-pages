@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HTML一覧</title>
+  <style>
+    :root {
+      --bg: #07111c;
+      --panel: rgba(15, 23, 42, 0.82);
+      --line: rgba(148, 163, 184, 0.14);
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent2: #4ade80;
+      --accent3: #e82127;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans JP", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(56,189,248,.18), transparent 24%),
+        radial-gradient(circle at 80% 16%, rgba(232,33,39,.15), transparent 20%),
+        linear-gradient(180deg, #09111b 0%, #07111c 100%);
+    }
+    .wrap {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 40px 0 56px;
+    }
+    header, section {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 12px 40px rgba(0,0,0,.18);
+    }
+    header { padding: 28px; margin-bottom: 20px; }
+    h1 { margin: 0 0 10px; font-size: clamp(30px, 4vw, 48px); }
+    p { color: var(--muted); line-height: 1.7; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin: 20px 0;
+    }
+    .card {
+      background: rgba(2, 6, 23, 0.2);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px;
+    }
+    .tag {
+      display: inline-block;
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+    .card h2 { margin: 0 0 8px; font-size: 20px; }
+    .card p { margin: 0 0 12px; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .btn {
+      display: inline-block;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(56,189,248,.14);
+      border: 1px solid rgba(56,189,248,.26);
+      color: #dff7ff;
+      font-weight: 600;
+    }
+    .meta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .template {
+      margin-top: 18px;
+      padding: 18px;
+      border-radius: 16px;
+      border: 1px dashed rgba(148,163,184,.28);
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    code {
+      background: rgba(148,163,184,.12);
+      border: 1px solid rgba(148,163,184,.18);
+      padding: 0.12em 0.35em;
+      border-radius: 6px;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <div class="tag">HTML Gallery</div>
+      <h1>増やしていくHTML一覧</h1>
+      <p>
+        このページに新しいHTMLを足していけば、テーマごとのページ群をそのまま増やせます。
+        まずはTeslaスライドを置いてあります。
+      </p>
+      <div class="meta">
+        <span>URLをそのまま共有可能</span>
+        <span>iPhoneのSafariで閲覧可</span>
+        <span>古い版も残せる</span>
+      </div>
+    </header>
+
+    <section class="grid">
+      <article class="card">
+        <div class="tag">Tesla</div>
+        <h2>Tesla Model 3 購入検討</h2>
+        <p>新車・中古・価格調整・運転再開・FSDまでをまとめたスライド。</p>
+        <a class="btn" href="tesla-model3-analysis/">開く</a>
+      </article>
+
+      <article class="card">
+        <div class="tag">Template</div>
+        <h2>新規HTMLのひな形</h2>
+        <p>次のページを増やすときに使う、最小構成のテンプレートを置いてあります。</p>
+        <a class="btn" href="template.html">テンプレを見る</a>
+      </article>
+
+      <article class="card">
+        <div class="tag">Future</div>
+        <h2>今後のカテゴリ</h2>
+        <p>finance / books / travel / notes など、テーマ別に追加していく想定です。</p>
+        <a class="btn" href="../">ホームへ戻る</a>
+      </article>
+    </section>
+
+    <section class="template">
+      追加ルール: <code>html/&lt;category&gt;/&lt;slug&gt;/index.html</code>
+      に置いて、ここにリンクを足すだけ。
+    </section>
+  </main>
+</body>
+</html>

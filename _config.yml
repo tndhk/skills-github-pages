@@ -1,10 +1,8 @@
-# Theme
-# theme: minima  # Custom layouts are used instead
-
 # Site metadata
-title: 旅行メモ
-description: 家族との旅の思い出と旅行計画のコツをシェア
-author: 旅行メモ
+
+title: HTML Library
+description: HTMLスライドや静的ページを増やしていく GitHub Pages 置き場
+author: tndhk
 baseurl: /skills-github-pages
 
 # Build settings
@@ -30,7 +28,7 @@ defaults:
   - scope:
       path: "index.md"
     values:
-      layout: "home"
+      layout: "none"
 
 # Exclude from processing
 exclude:
