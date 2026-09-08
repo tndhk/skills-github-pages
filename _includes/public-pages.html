@@ -1,0 +1,16 @@
+{% for entry in site.data.public_pages %}
+<article class="card tool-card">
+  <div class="eyebrow">{{ entry.category | escape }}</div>
+  <h2>{{ entry.title | escape }}</h2>
+  <p>{{ entry.description | escape }}</p>
+  <a class="btn" href="{{ entry.url | relative_url }}" aria-label="{{ entry.title | escape }}を開く">開く</a>
+</article>
+{% endfor %}
+<div id="posts" style="grid-column: 1 / -1"><h2>旅行メモ</h2></div>
+{% for post in site.posts %}
+<article class="card">
+  <div class="eyebrow">旅行メモ · {{ post.date | date: "%Y-%m-%d" }}</div>
+  <h2>{{ post.title | escape }}</h2>
+  <a class="btn" href="{{ post.url | relative_url }}" aria-label="{{ post.title | escape }}を読む">記事を読む</a>
+</article>
+{% endfor %}

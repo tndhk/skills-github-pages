@@ -1,13 +1,13 @@
 ---
 layout: none
-title: HTML Library
+title: 公開ライブラリ
 ---
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>HTML Library</title>
+  <title>公開ライブラリ</title>
   <style>
     :root {
       --bg: #061018;
@@ -68,10 +68,11 @@ title: HTML Library
     }
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr));
       gap: 16px;
       margin-top: 24px;
     }
+    .tool-card { grid-column: 1 / -1; }
     .card {
       padding: 20px;
     }
@@ -119,40 +120,19 @@ title: HTML Library
 <body>
   <main class="wrap">
     <section class="hero">
-      <div class="eyebrow">GitHub Pages HTML Library</div>
-      <h1>HTMLを増やしていくための置き場</h1>
-      <p class="lead">
-        このリポジトリは、単発のHTMLスライドやメモをどんどん追加していくための公開ライブラリです。
-        追加したHTMLはそのままURLで共有でき、iPhoneでもSafariから開けます。
-      </p>
-      <div class="grid">
-        <div class="card">
-          <h2>現在の公開ページ</h2>
-          <p>Tesla Model 3 の購入検討スライドを置いています。</p>
-          <a class="btn" href="html/tesla-model3-analysis/">Teslaスライドを開く</a>
-        </div>
-        <div class="card">
-          <h2>追加のしかた</h2>
-          <p>新しいHTMLは <code>html/&lt;category&gt;/&lt;slug&gt;/index.html</code> に追加。</p>
-          <p>例: <code>html/finance/monthly-review/index.html</code></p>
-        </div>
-        <div class="card">
-          <h2>おすすめの運用</h2>
-          <p>一覧ページから各HTMLへ飛べるようにして、古い版は残したまま増やしていく。</p>
-          <a class="btn" href="html/">HTML一覧へ</a>
-        </div>
-      </div>
+      <div class="eyebrow">Public Library</div>
+      <h1>ツールと旅のメモ</h1>
+      <p class="lead">ポケモンのダメージ計算機と、これまでの旅行計画・ガイドをまとめています。</p>
+      <nav aria-label="サイトナビゲーション">
+        <a class="btn" href="{{ '/html/' | relative_url }}">公開ページ一覧</a>
+        <a class="btn" href="#posts">旅行メモへ</a>
+        <a class="btn" href="https://github.com/tndhk/skills-github-pages">ソースを見る</a>
+      </nav>
     </section>
-
-    <section class="note">
-      <strong>このサイトでやること</strong>
-      <ul>
-        <li>HTMLを増やす</li>
-        <li>一覧ページから選べるようにする</li>
-        <li>テーマごとにフォルダを分ける</li>
-        <li>過去版を archive として残す</li>
-      </ul>
+    <section class="grid" aria-label="公開ツールと旅行メモ">
+      {% include public-pages.html %}
     </section>
+    <p class="note">旅行記事は作成当時の記録です。日程・価格・施設情報は記事の日付を確認してください。</p>
   </main>
 </body>
 </html>

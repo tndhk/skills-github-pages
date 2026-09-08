@@ -20,7 +20,8 @@ function initMobileMenu() {
   if (!mobileMenuBtn || !mobileMenu) return;
 
   mobileMenuBtn.addEventListener('click', function() {
-    mobileMenu.classList.toggle('hidden');
+    const hidden = mobileMenu.classList.toggle('hidden');
+    mobileMenuBtn.setAttribute('aria-expanded', String(!hidden));
   });
 
   // Close menu when a link is clicked
@@ -28,6 +29,7 @@ function initMobileMenu() {
   menuLinks.forEach(link => {
     link.addEventListener('click', function() {
       mobileMenu.classList.add('hidden');
+      mobileMenuBtn.setAttribute('aria-expanded', 'false');
     });
   });
 
@@ -38,6 +40,7 @@ function initMobileMenu() {
 
     if (!isMenuBtn && !isMenu && !mobileMenu.classList.contains('hidden')) {
       mobileMenu.classList.add('hidden');
+      mobileMenuBtn.setAttribute('aria-expanded', 'false');
     }
   });
 }

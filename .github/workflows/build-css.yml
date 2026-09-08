@@ -9,7 +9,7 @@ on:
       - '_layouts/**'
       - '_includes/**'
       - '_posts/**'
-      - 'index.md'
+      - 'index.html'
       - 'package.json'
   workflow_dispatch:
 

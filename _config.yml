@@ -1,7 +1,7 @@
 # Site metadata
 
-title: HTML Library
-description: HTMLスライドや静的ページを増やしていく GitHub Pages 置き場
+title: 公開ライブラリ
+description: ポケモンのダメージ計算機と旅行計画・ガイド
 author: tndhk
 baseurl: /skills-github-pages
 
@@ -26,7 +26,7 @@ defaults:
     values:
       layout: "post"
   - scope:
-      path: "index.md"
+      path: "index.html"
     values:
       layout: "none"
 
@@ -39,3 +39,8 @@ exclude:
   - package.json
   - tailwind.config.js
   - .prettierrc
+  - package-lock.json
+  - README.md
+  - MODERNIZATION.md
+  - scripts
+  - output

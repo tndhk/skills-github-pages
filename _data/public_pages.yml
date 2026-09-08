@@ -1,0 +1,4 @@
+- title: ポケモン ダメージ計算機
+  category: Pokémon
+  description: 自分の構築から相手へのダメージを、技・耐久・天候・メガ形態などの条件で確認できます。
+  url: /pokemon-damage-calc/
