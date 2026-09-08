@@ -1,4 +1,5 @@
 import { TYPE_CHART, TEAM, MOVES, OPPONENTS } from './data.js';
+import { MEGA_OPPONENTS, getOpponentVariant } from './mega-data.js';
 import { applyStage, getTeamFormStats, buildOpponentStats } from './stats.js';
 
 const MOD_BASE = 4096;
@@ -150,6 +151,7 @@ export function calculateMatchup({
   form = 'normal',
   moveId,
   opponentId,
+  opponentForm = 'normal',
   preset = 'uninvested',
   custom = {},
   board = {},
@@ -160,12 +162,14 @@ export function calculateMatchup({
   if (!member) throw new Error(`Unknown team member: ${memberId}`);
   if (!move) throw new Error(`Unknown move: ${moveId}`);
   if (!opponent) throw new Error(`Unknown opponent: ${opponentId}`);
+  if (opponentForm === 'mega' && !MEGA_OPPONENTS[opponentId]) throw new Error(`Mega form unavailable: ${opponentId}`);
 
+  const defenderVariant = getOpponentVariant(opponentId, opponent, opponentForm);
   const attackerStats = getTeamFormStats(memberId, form);
-  const defenderStats = buildOpponentStats(opponent, preset, custom);
+  const defenderStats = buildOpponentStats(defenderVariant, preset, custom);
   const result = calcDamage({
     attacker: { ...attackerStats, types: member.types },
-    defender: { ...defenderStats, types: opponent.types },
+    defender: { ...defenderStats, types: defenderVariant.types },
     move,
     weather: board.weather ?? 'none',
     attackStage: (board.attackStage ?? 0) + (move.preAttackStage ?? 0),
@@ -183,7 +187,7 @@ export function calculateMatchup({
       attackerName: member.name,
       formName: form === 'mega' ? 'メガ' : '通常',
       moveName: move.name,
-      opponentName: opponent.name,
+      opponentName: defenderVariant.name,
     };
   }
 
@@ -192,7 +196,7 @@ export function calculateMatchup({
     attackerName: member.name,
     formName: form === 'mega' ? 'メガ' : '通常',
     moveName: result.resolvedMove?.name ?? move.name,
-    opponentName: opponent.name,
+    opponentName: defenderVariant.name,
     effectiveness: result.effectiveness,
   };
 }
