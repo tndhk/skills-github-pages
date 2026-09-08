@@ -1,5 +1,5 @@
 import { TEAM, MOVES, OPPONENTS, DEFENSE_PRESETS } from './data.js';
-import { MEGA_OPPONENTS, getOpponentVariant } from './mega-data.js';
+import { MEGA_OPPONENTS, getOpponentVariant, getOpponentFormOptions } from './mega-data.js';
 import { buildOpponentStats } from './stats.js';
 import { calculateMatchup } from './damage.js';
 
@@ -83,16 +83,22 @@ function renderFormToggle() {
 }
 
 function renderOpponentFormToggle() {
-  const hasMega = Boolean(MEGA_OPPONENTS[state.opponentId]);
+  const options = getOpponentFormOptions(state.opponentId);
+  const hasMega = options.length > 1;
   els.opponentFormBlock.hidden = !hasMega;
   els.opponentFormToggle.replaceChildren();
   if (!hasMega) {
     state.opponentForm = 'normal';
     return;
   }
+  if (!options.some((option) => option.id === state.opponentForm)) state.opponentForm = 'normal';
   els.opponentFormToggle.append(
-    button('通常', '', state.opponentForm === 'normal', () => selectOpponentForm('normal')),
-    button('メガ', '', state.opponentForm === 'mega', () => selectOpponentForm('mega')),
+    ...options.map((option) => button(
+      option.label,
+      '',
+      state.opponentForm === option.id,
+      () => selectOpponentForm(option.id),
+    )),
   );
 }
 
