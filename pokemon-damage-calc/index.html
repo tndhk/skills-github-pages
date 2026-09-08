@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f6f7fb">
+  <title>Taka構築専用ダメ計</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="app-header">
+      <p class="eyebrow">Pokémon Champions / Lv50</p>
+      <h1>Taka構築専用ダメ計</h1>
+      <p class="subcopy">自分の構築は入力済み。相手と盤面だけ選択。</p>
+    </header>
+
+    <section class="panel" aria-labelledby="attacker-title">
+      <div class="section-heading">
+        <span class="step">1</span>
+        <h2 id="attacker-title">自分のポケモン</h2>
+      </div>
+      <div id="team-grid" class="choice-grid team-grid" aria-label="自分のポケモン"></div>
+      <div id="form-toggle" class="segmented form-toggle" aria-label="フォルム切替" hidden></div>
+    </section>
+
+    <section class="panel" aria-labelledby="move-title">
+      <div class="section-heading">
+        <span class="step">2</span>
+        <h2 id="move-title">技</h2>
+      </div>
+      <div id="move-grid" class="choice-grid move-grid" aria-label="技"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="opponent-title">
+      <div class="section-heading">
+        <span class="step">3</span>
+        <h2 id="opponent-title">相手</h2>
+      </div>
+      <label class="field-label" for="opponent-search">ポケモン名</label>
+      <div class="search-wrap">
+        <input id="opponent-search" class="search-input" type="search" autocomplete="off" inputmode="search" placeholder="例：ガブリアス">
+        <div id="opponent-results" class="search-results" role="listbox" aria-label="相手候補"></div>
+      </div>
+
+      <div class="field-block">
+        <span class="field-label">耐久</span>
+        <div id="preset-grid" class="preset-grid" aria-label="相手耐久プリセット"></div>
+      </div>
+
+      <div id="custom-defense" class="custom-defense" hidden>
+        <label>HP<input id="custom-hp" type="number" min="1" step="1"></label>
+        <label>B<input id="custom-def" type="number" min="1" step="1"></label>
+        <label>D<input id="custom-spd" type="number" min="1" step="1"></label>
+      </div>
+    </section>
+
+    <details id="board-controls" class="panel board-details">
+      <summary>
+        <span>盤面詳細</span>
+        <span class="summary-hint">天候・ランク・壁など</span>
+      </summary>
+      <div class="board-body">
+        <fieldset>
+          <legend>天候</legend>
+          <div class="segmented" id="weather-grid">
+            <button type="button" data-weather="none">なし</button>
+            <button type="button" data-weather="sun">晴れ</button>
+            <button type="button" data-weather="rain">雨</button>
+          </div>
+        </fieldset>
+
+        <div class="stage-grid">
+          <label>攻撃側ランク
+            <select id="attack-stage"></select>
+          </label>
+          <label>防御側ランク
+            <select id="defense-stage"></select>
+          </label>
+        </div>
+
+        <div class="toggle-grid">
+          <label class="toggle"><input id="burn" type="checkbox"><span>やけど</span></label>
+          <label class="toggle"><input id="reflect" type="checkbox"><span>リフレクター</span></label>
+          <label class="toggle"><input id="light-screen" type="checkbox"><span>ひかりのかべ</span></label>
+          <label class="toggle"><input id="spread" type="checkbox"><span>ダブル範囲補正</span></label>
+          <label class="toggle"><input id="critical" type="checkbox"><span>急所</span></label>
+        </div>
+      </div>
+    </details>
+
+    <section id="result-card" class="result-card" aria-live="polite">
+      <div class="result-context" id="result-context"></div>
+      <div class="result-move" id="result-move"></div>
+      <div id="damage-range" class="damage-range">—</div>
+      <div id="damage-percent" class="damage-percent">—</div>
+      <div id="ko-label" class="ko-label">—</div>
+      <div id="rolls" class="rolls"></div>
+    </section>
+
+    <footer class="footer-note">v1: 自分 → 相手の与ダメージ専用</footer>
+  </main>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
