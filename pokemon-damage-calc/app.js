@@ -1,4 +1,5 @@
 import { TEAM, MOVES, OPPONENTS, DEFENSE_PRESETS } from './data.js';
+import { MEGA_OPPONENTS, getOpponentVariant } from './mega-data.js';
 import { buildOpponentStats } from './stats.js';
 import { calculateMatchup } from './damage.js';
 
@@ -13,6 +14,7 @@ const state = {
   form: 'normal',
   moveId: 'heatWave',
   opponentId: 'garchomp',
+  opponentForm: 'normal',
   preset: 'uninvested',
   custom: { hp: 183, def: 115, spd: 105 },
   board: {
@@ -26,6 +28,7 @@ const $ = (id) => document.getElementById(id);
 const els = {
   teamGrid: $('team-grid'), formToggle: $('form-toggle'), moveGrid: $('move-grid'),
   opponentSearch: $('opponent-search'), opponentResults: $('opponent-results'),
+  opponentFormBlock: $('opponent-form-block'), opponentFormToggle: $('opponent-form-toggle'),
   presetGrid: $('preset-grid'), customDefense: $('custom-defense'), customHp: $('custom-hp'),
   customDef: $('custom-def'), customSpd: $('custom-spd'), weatherGrid: $('weather-grid'),
   attackStage: $('attack-stage'), defenseStage: $('defense-stage'), burn: $('burn'),
@@ -44,8 +47,12 @@ function button(label, className, active, onClick, extra = '') {
   return el;
 }
 
+function currentOpponentVariant() {
+  return getOpponentVariant(state.opponentId, OPPONENTS[state.opponentId], state.opponentForm);
+}
+
 function syncCustomFromOpponent() {
-  const stats = buildOpponentStats(OPPONENTS[state.opponentId], 'uninvested');
+  const stats = buildOpponentStats(currentOpponentVariant(), 'uninvested');
   state.custom = { ...stats };
 }
 
@@ -72,6 +79,20 @@ function renderFormToggle() {
   els.formToggle.append(
     button('通常', '', state.form === 'normal', () => selectForm('normal')),
     button('メガ', '', state.form === 'mega', () => selectForm('mega')),
+  );
+}
+
+function renderOpponentFormToggle() {
+  const hasMega = Boolean(MEGA_OPPONENTS[state.opponentId]);
+  els.opponentFormBlock.hidden = !hasMega;
+  els.opponentFormToggle.replaceChildren();
+  if (!hasMega) {
+    state.opponentForm = 'normal';
+    return;
+  }
+  els.opponentFormToggle.append(
+    button('通常', '', state.opponentForm === 'normal', () => selectOpponentForm('normal')),
+    button('メガ', '', state.opponentForm === 'mega', () => selectOpponentForm('mega')),
   );
 }
 
@@ -136,6 +157,7 @@ function renderResult() {
       form: state.form,
       moveId: state.moveId,
       opponentId: state.opponentId,
+      opponentForm: state.opponentForm,
       preset: state.preset,
       custom: state.custom,
       board: state.board,
@@ -166,7 +188,7 @@ function renderResult() {
   els.resultMove.textContent = `${result.moveName}  ×${eff}`;
   els.damageRange.textContent = `${result.min}〜${result.max}`;
   els.damagePercent.textContent = `${result.minPercent.toFixed(1)}〜${result.maxPercent.toFixed(1)}%`;
-  const defender = buildOpponentStats(OPPONENTS[state.opponentId], state.preset, state.custom);
+  const defender = buildOpponentStats(currentOpponentVariant(), state.preset, state.custom);
   els.koLabel.textContent = practicalKoLabel(result, defender.hp);
   els.rolls.textContent = `乱数: ${result.rolls.join(' / ')}`;
 }
@@ -199,10 +221,20 @@ function selectMove(moveId) {
 
 function selectOpponent(opponentId) {
   state.opponentId = opponentId;
+  state.opponentForm = 'normal';
   state.preset = 'uninvested';
   syncCustomFromOpponent();
   els.opponentSearch.value = OPPONENTS[opponentId].name;
   els.opponentResults.classList.remove('open');
+  renderOpponentFormToggle();
+  renderPresets();
+  renderResult();
+}
+
+function selectOpponentForm(form) {
+  state.opponentForm = form;
+  syncCustomFromOpponent();
+  renderOpponentFormToggle();
   renderPresets();
   renderResult();
 }
@@ -223,7 +255,8 @@ function renderOpponentResults(query = '') {
     item.type = 'button';
     item.className = 'search-result';
     item.setAttribute('role', 'option');
-    item.innerHTML = `<strong>${opponent.name}</strong><small>${opponent.types.map((type) => TYPE_LABELS[type]).join(' / ')}</small>`;
+    const megaBadge = MEGA_OPPONENTS[id] ? ' / メガ対応' : '';
+    item.innerHTML = `<strong>${opponent.name}</strong><small>${opponent.types.map((type) => TYPE_LABELS[type]).join(' / ')}${megaBadge}</small>`;
     item.addEventListener('click', () => selectOpponent(id));
     els.opponentResults.append(item);
   }
@@ -281,6 +314,7 @@ function init() {
   els.opponentSearch.value = OPPONENTS[state.opponentId].name;
   renderTeam();
   renderFormToggle();
+  renderOpponentFormToggle();
   renderMoves();
   renderPresets();
   renderBoardInputs();
